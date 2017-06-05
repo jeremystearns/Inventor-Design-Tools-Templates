@@ -1,4 +1,8 @@
+**********************************************************************************************
+**********************************************************************************************
 DUCT-FGO-S1 DESIGN TOOL SKELETON CODE
+
+**********************************************************************************************
 
 ***Basic Dimensions***
 
@@ -19,7 +23,7 @@ BO_Large_Angle_Hole_Pattern_Dim_From_End = (BO_Opening_Length-((BO_Large_Angle_H
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Feature Suppression***
 
@@ -32,7 +36,7 @@ End If
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Build Skeleton***
 
@@ -42,8 +46,12 @@ iLogicVb.RunRule("Feature Suppression")
 
 InventorVb.DocumentUpdate()
 
+**********************************************************************************************
+**********************************************************************************************
 
 DUCT-FGO-S1 DESIGN TOOL ASSEMBLY CODE
+
+**********************************************************************************************
 
 ***Multivalue Lists***
 
@@ -117,7 +125,7 @@ End Select
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Basic Dimensions***
 
@@ -174,7 +182,7 @@ End Select
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Push Values to Skeleton***
 
@@ -186,7 +194,7 @@ Parameter("Skeleton", "BO_End_of_Angle") = BO_End_of_Angle
 Parameter("Skeleton", "EI_Brake") = EI_Brake
 Parameter("Skeleton", "Angle_of_Transition") = Angle_of_Transition
 
-
+**********************************************************************************************
 
 ***Component Visibility***
 
@@ -388,7 +396,7 @@ Component.Visible("Skeleton") = False
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Set Invisible Components to Reference***
 
@@ -438,7 +446,7 @@ oBOMView = oBOM.BOMViews.Item("Structured")
 
 oBOMView.Renumber
 
-
+**********************************************************************************************
 
 ***Build***
 
@@ -454,7 +462,7 @@ iLogicVb.RunRule("Set Invisible Components to Reference")
 
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Replace Child Components***
 
@@ -536,7 +544,7 @@ For Each oDoc In oAsmDoc.AllReferencedDocuments
 Next
 ']
 
-
+**********************************************************************************************
 
 ***Create Drawing***
 
@@ -591,7 +599,7 @@ Else
 End If
 ']
 
-
+**********************************************************************************************
 
 ***On New Document***
 

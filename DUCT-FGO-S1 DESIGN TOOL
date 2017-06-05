@@ -41,3 +41,571 @@ iLogicVb.RunRule("Basic Dimensions")
 iLogicVb.RunRule("Feature Suppression")
 
 InventorVb.DocumentUpdate()
+
+
+DUCT-FGO-S1 DESIGN TOOL ASSEMBLY CODE
+
+***Multivalue Lists***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("Boiler_Model", "100D (25-40 ROWS)","200D (40-60 ROWS)","300D (55-65 ROWS)","300D (70-75 ROWS)","400D (75 ROWS)","400D (85-90 ROWS)","500D (95-110 ROWS)","500D (115-125 ROWS)","600D (120 ROWS)","600D (125 ROWS)")
+
+Select Case Boiler_Model
+    Case "100D (25-40 ROWS)"
+	BO_Opening_Width = "16.75"
+	BO_Opening_Length = "67"
+	BO_End_of_Angle = "58"
+	MultiValue.SetList("Economizer_Model", "E3","E4","E5")
+
+    Case "200D (40-60 ROWS)"
+	BO_Opening_Width = "28.75"
+	BO_Opening_Length = "79.5"
+	BO_End_of_Angle = "58"
+	MultiValue.SetList("Economizer_Model", "E5","E6","E7")
+	
+	Case "300D (55-65 ROWS)"
+	BO_Opening_Width = "32.75"
+	BO_Opening_Length = "88.5"
+	BO_End_of_Angle = "76"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+		
+	Case "300D (70-75 ROWS)"
+	BO_Opening_Width = "32.75"
+	BO_Opening_Length = "88.5"
+	BO_End_of_Angle = "76"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+
+	Case "400D (75 ROWS)"
+	BO_Opening_Width = "48.75"
+	BO_Opening_Length = "88.5"
+	BO_End_of_Angle = "76"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "400D (85-90 ROWS)"
+	BO_Opening_Width = "60.75"
+	BO_Opening_Length = "88.5"
+	BO_End_of_Angle = "76"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "500D (95-110 ROWS)"
+	BO_Opening_Width = "68.75"
+	BO_Opening_Length = "91.5"
+	BO_End_of_Angle = "86"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "500D (115-125 ROWS)"
+	BO_Opening_Width = "76.75"
+	BO_Opening_Length = "91.5"
+	BO_End_of_Angle = "86"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "600D (120 ROWS)"
+	BO_Opening_Width = "88.75"
+	BO_Opening_Length = "91.5"
+	BO_End_of_Angle = "86"
+	MultiValue.SetList("Economizer_Model", "E10")
+
+	Case "600D (125 ROWS)"
+	BO_Opening_Width = "88.75"
+	BO_Opening_Length = "91.5"
+	BO_End_of_Angle = "86"
+	MultiValue.SetList("Economizer_Model", "E10")
+	
+End Select
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+
+
+***Basic Dimensions***
+
+Select Case Economizer_Model
+	Case "E3"
+	EI_Opening_Width = "22"
+	EI_Opening_Length = "48"
+	EI_Brake = "24"
+	Angle_of_Transition = "15"
+
+	Case "E4"
+	EI_Opening_Width = "26"
+	EI_Opening_Length = "72"
+	EI_Brake = "24"
+	Angle_of_Transition = "15"
+            
+	Case "E5"
+	EI_Opening_Width = "38.25"
+	EI_Opening_Length = "84"
+ 	EI_Brake = "24"
+	Angle_of_Transition = "15"
+
+	Case "E6"
+	EI_Opening_Width = "42.75"
+	EI_Opening_Length = "108"
+	EI_Brake = "24"
+	Angle_of_Transition = "15"
+            
+	Case "E7"
+	EI_Opening_Width = "47.25"
+	EI_Opening_Length = "156"
+	EI_Brake = "24"
+	Angle_of_Transition = "15"
+
+ 	Case "E8"
+	EI_Opening_Width = "56.25"
+	EI_Opening_Length = "180"
+ 	EI_Brake = "24"
+	Angle_of_Transition = "15"
+            
+	Case "E9"
+	EI_Opening_Width = "74.25"
+	EI_Opening_Length = "192"
+ 	EI_Brake = "24"
+	Angle_of_Transition = "15"
+
+	Case "E10"
+	EI_Opening_Width = "101.25"
+	EI_Opening_Length = "204"
+	EI_Brake = "24"
+	Angle_of_Transition = "15"
+End Select
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Push Values to Skeleton***
+
+Parameter("Skeleton", "BO_Opening_Width") = BO_Opening_Width
+Parameter("Skeleton", "BO_Opening_Length") = BO_Opening_Length
+Parameter("Skeleton", "EI_Opening_Width") = EI_Opening_Width
+Parameter("Skeleton", "EI_Opening_Length") = EI_Opening_Length
+Parameter("Skeleton", "BO_End_of_Angle") = BO_End_of_Angle
+Parameter("Skeleton", "EI_Brake") = EI_Brake
+Parameter("Skeleton", "Angle_of_Transition") = Angle_of_Transition
+
+
+
+***Component Visibility***
+
+Component.Visible("Skeleton") = False
+
+'[ Econ Inlet Centered with Boiler Outlet
+
+	'[ Checks if the 4th Row of Stiffeners from the Bottom are Needed Based on Boiler Model
+	If Boiler_Model = "100D (25-40 ROWS)" Or Boiler_Model = "200D (40-60 ROWS)"
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EISPS4:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIFPS4:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPS4:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EISPS4:2") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIFPS4:2") = False
+	Else
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EISPS4:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIFPS4:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPS4:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EISPS4:2") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIFPS4:2") = True
+	End If
+	']
+	
+	'[ Checks if Boiler Outlet Internal Stiffeners are Needed Based on Boiler Model
+	If Boiler_Model = "100D (25-40 ROWS)" Or Boiler_Model = "200D (40-60 ROWS)" Or Boiler_Model = "300D (55-65 ROWS)" Or Boiler_Model = "300D (70-75 ROWS)" 
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOIS1:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOIS2:1") = False
+	Else
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOIS1:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOIS2:1") = True
+	End If
+	']
+	
+	'[ Checks if 2nd Set of Bottom Stiffeners are Needed Based on Boiler Model
+	If Boiler_Model = "100D (25-40 ROWS)" Or Boiler_Model = "200D (40-60 ROWS)" Or Boiler_Model = "300D (55-65 ROWS)" Or Boiler_Model = "300D (70-75 ROWS)" Or Boiler_Model = "400D (75 ROWS)" Or Boiler_Model = "400D (85-90 ROWS)"
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:2") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPVS2:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:4") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPVS2:2") = False	
+	Else
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:2") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPVS2:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:4") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIBPVS2:2") = True	
+	End If
+	']
+	
+	'[ Checks if 1st Set of Bottom Stiffeners are Needed Based on Boiler Model
+	If Boiler_Model = "100D (25-40 ROWS)" 
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:3") = False
+	Else
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPS1:3") = True
+	End If
+	']
+	
+	'[ Checks if Economizer Inlet Internal Stiffeners are Needed Based on Boiler Model
+	If Boiler_Model = "100D (25-40 ROWS)" Or Boiler_Model = "200D (40-60 ROWS)" 
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS1:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS1:2") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS2:1") = False
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS2:2") = False
+	Else
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS1:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS1:2") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS2:1") = True
+		Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-EIIS2:2") = True
+	End If
+	']
+	
+	'[ Checks if 2nd Set of Boiler Outlet Stiffeners are Needed Based on Boiler Model & Economizer Model
+	
+	Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+	
+	Select Case Boiler_Model
+		Case "500D (95-110 ROWS)"
+			If Economizer_Model = "E9"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+		Case "500D (115-125 ROWS)"
+			If Economizer_Model = "E9"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+		Case "400D (75 ROWS)"
+			If Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E7"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+		Case "400D (85-90 ROWS)"
+			If Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E7"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+		Case "300D (55-65 ROWS)"
+			If Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E7"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+		Case "300D (70-75 ROWS)"
+			If Economizer_Model = "E8"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			ElseIf Economizer_Model = "E7"
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = True
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = True
+			Else
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:3") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOBPVS2:4") = False
+				Component.Visible(iProperties.Value("Project", "Project") & "-DUCT-FGO-S1-BOSPS1:4") = False
+			End If
+			
+	End Select		
+	
+	']
+
+']
+
+''[ Econ Inlet NOT Centered with Boiler Outlet
+'
+'Needs worked on for custom jobs code.
+'']
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+
+
+***Set Invisible Components to Reference***
+
+' set a reference to the assembly component definintion.
+' This assumes an assembly document is open.
+Dim oAsmCompDef As AssemblyComponentDefinition
+oAsmCompDef = ThisDoc.Document.ComponentDefinition
+'Iterate through all of the occurrences
+Dim oOccurrence As ComponentOccurrence
+For Each oOccurrence In oAsmCompDef.Occurrences
+'check for and skip virtual components
+If Not TypeOf oOccurrence.Definition Is VirtualComponentDefinition Then
+''set BOM as default if the component is visible
+If Component.Visible(oOccurrence.Name) = True Then
+'otestvisible = CStr(oOccurrence.Name)
+'MessageBox.Show(otestvisible, "Title")
+
+'enable or disable component
+Component.InventorComponent(oOccurrence.Name).Enabled = True
+
+
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kDefaultBOMStructure
+'set BOM as reference if the component is not visible
+ElseIf Component.Visible(oOccurrence.Name) = False Then
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kReferenceBOMStructure
+End If
+Else
+End If
+Next
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+Dim oDoc As AssemblyDocument
+oDoc = ThisDoc.Document
+
+Dim oBOM As BOM
+oBOM = oDoc.ComponentDefinition.BOM
+
+oBOM.StructuredViewFirstLevelOnly = False
+oBOM.StructuredViewEnabled = True
+
+
+Dim oBOMView As BOMView
+oBOMView = oBOM.BOMViews.Item("Structured")
+
+oBOMView.Renumber
+
+
+
+***Build***
+
+iLogicVb.RunRule("Basic Dimensions")
+
+iLogicVb.RunRule("Push Values to Skeleton")
+
+iLogicVb.RunRule("Skeleton", "Build Skeleton")
+
+iLogicVb.RunRule("Component Visibility")
+
+iLogicVb.RunRule("Set Invisible Components to Reference")
+
+InventorVb.DocumentUpdate()
+
+
+
+***Replace Child Components***
+
+'[ Create New Folder Path
+JobNumber = iProperties.Value("Project", "Project")
+
+ProjectFilePath = ThisApplication.FileLocations.FileLocationsFile
+ProjectFilePathArray = Split(ProjectFilePath,"\")
+
+If IsNumeric(Left(JobNumber,1)) = True
+
+    PrefixNumber = Left(JobNumber, Len(JobNumber)-2)
+    NewFolderPath =  ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & "\" & "Current Job Folder\" _
+    & PrefixNumber & "00-" & PrefixNumber & "99\" & JobNumber & "\DUCT-FGO-S1\"
+
+Else
+
+    NewFolderPath = ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & _
+    "\Current Job Folder\EBS STDS\DUCT-FGO-S1\" & JobNumber & "\"
+
+End If
+']
+
+'[ Save Instance of Template
+If System.IO.Directory.Exists(NewFolderPath) Then
+Else
+System.IO.Directory.CreateDirectory(NewFolderPath)
+End If
+
+
+
+NewFilePath = NewFolderPath & JobNumber & " DUCT-FGO-S1.iam"
+
+If System.IO.File.Exists(NewFilePath) = False Then
+    ThisDoc.Document.SaveAs(NewFilePath, False)
+Else
+    MessageBox.Show(NewFilePath & " already exists", "DUCT-FGO-S1 - Replace Child Components")
+    Return
+End If
+']
+
+'[ Iterate through all of the documents referenced by this assembly and replace the job specific ones
+Dim oAsmDoc As AssemblyDocument = ThisDoc.Document
+
+Dim oDoc As Document
+
+
+For Each oDoc In oAsmDoc.AllReferencedDocuments
+ 
+    FullPath = oDoc.FullFileName
+    PathSplitArray = Split(FullPath,"\")
+    FileName = PathSplitArray(PathSplitArray.Length-1)
+
+    If Left(FileName,1) = "-"
+    
+'Adds folders past Specific Design Tools Folder
+
+                ExtraFolders = ""
+                
+                For i = 5 To PathSplitArray.Length-2
+                
+                    ExtraFolders = ExtraFolders & "\" & PathSplitArray(i) 
+                
+                Next
+                
+                
+                
+    
+    'Saves new path of files with leading "-"
+    
+                SavePath = NewFolderPath & "\"& ExtraFolders & "\" & JobNumber & FileName
+
+    oFile = ThisApplication.Documents.Open(FullPath, False) 
+    oFile.SaveAs(SavePath,False)
+    oFile.Close
+    
+    End If
+
+Next
+']
+
+
+
+***Create Drawing***
+
+'[ Create Drawing
+
+ProjectFilePath = ThisApplication.FileLocations.FileLocationsFile
+ProjectFilePathArray = Split(ProjectFilePath,"\")
+
+DrawingTemplatePath =  ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & "\Current Job Folder\Design Tools\DUCT-FGO-S1\-DUCT-FGO-S1.dwg"
+ModelNewPath = ThisDoc.PathAndFileName(True)
+DrawingNewPath = ThisDoc.ChangeExtension(".dwg")
+
+If System.IO.File.Exists(DrawingNewPath) = True
+    i = MessageBox.Show(DrawingNewPath & " already exists", "iLogic", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+Else If System.IO.File.Exists(DrawingTemplatePath) = False
+    i = MessageBox.Show(DrawingTemplatePath & " not found.  Get from Vault.", "iLogic", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+    Return
+Else
+
+        Dim oDwg as DrawingDocument
+        oDwg = ThisApplication.Documents.Open(DrawingTemplatePath, False)
+        
+        'Swap out Reference
+        Dim oFD As FileDescriptor
+        oFD = oDwg.ReferencedFileDescriptors(1).DocumentDescriptor.ReferencedFileDescriptor
+        oFD.ReplaceReference(ModelNewPath)
+    
+    
+        For i = 1 To oDwg.ReferencedFileDescriptors.Count
+
+            oFD = oDwg.ReferencedFileDescriptors(i).DocumentDescriptor.ReferencedFileDescriptor
+            FileNameArray = Split(oFD.FullFileName,"\")
+            
+            NewFilePath = ThisDoc.Path & "\" & iProperties.Value("Project", "Project") & FileNameArray(FileNameArray.Length-1)
+            
+                If Left(FileNameArray(FileNameArray.Length-1),1) = "-"
+                    Try
+                    oFD.ReplaceReference(NewFilePath)
+                    Catch
+                    MsgBox("Trouble Replacing " & NewFilePath & "... Please check lagging drawing for errors")
+                    End Try
+                End If
+                
+        Next
+    
+    
+            
+        oDwg.Update()
+        oDwg.SaveAs(DrawingNewPath,False)
+        oDwg.Close
+
+End If
+']
+
+
+
+***On New Document***
+
+ThisApplication.CommandManager.ControlDefinitions.Item("AppIsometricViewCmd").Execute
+
+iProperties.Value("Project", "Project") = InputBox("Input Job Number", "Job Number Entry","####")
+
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+iLogicVb.RunRule("Replace Child Components")
+
+iLogicVb.RunRule("Create Drawing")
+
+iLogicForm.Show("Configure")

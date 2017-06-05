@@ -1,0 +1,523 @@
+STRUCTURE-ECON-S1 DESIGN TOOL SKELETON
+
+***Multivalue Lists 1***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("W_Beam_1_Type", "W8X24","W8X31","W10X49","W12X65")
+
+MultiValue.SetList("W_Beam_2_Type", "W8X24","W8X31","W10X49","W12X65")
+
+MultiValue.SetList("W_Beam_3_Type", "W8X24","W8X31","W10X49","W12X65")
+
+Select Case W_Beam_1_Type
+
+	Case "W8X24"
+	WB1_G_W = 6.5 in
+	WB1_G_H = 7.93 in
+	WB1_G_T = 0.245 in
+	WB1_G_T1 = 0.4 in
+	WB1_G_IR = 0.4 in
+	BP_Thickness = .75 in
+	BP_Length = 10 in
+	BP_Width = 8 in
+	BP_Hole_Pattern_Length = 4 in
+	BP_Hole_Pattern_Width = 4 in
+	BP_Hole_Dia = 1.3125 in
+	TP_Thickness = .75 in
+	TP_Hole_Dia = .8125 in
+	
+	Case "W8X31"
+	WB1_G_W = 8 in
+	WB1_G_H = 8 in
+	WB1_G_T = 0.285 in
+	WB1_G_T1 = 0.435 in
+	WB1_G_IR = 0.4 in
+	BP_Thickness = .75 in
+	BP_Length = 10 in
+	BP_Width = 10 in
+	BP_Hole_Pattern_Length = 6 in
+	BP_Hole_Pattern_Width = 4 in
+	BP_Hole_Dia = 1.3125 in
+	TP_Thickness = .75 in
+	TP_Hole_Dia = .8125 in
+
+	Case "W10X49"
+	WB1_G_W = 10 in
+	WB1_G_H = 10 in
+	WB1_G_T = 0.34 in
+	WB1_G_T1 = 0.56 in
+	WB1_G_IR = 0.5 in
+	BP_Thickness = 1 in
+	BP_Length = 12 in
+	BP_Width = 12 in
+	BP_Hole_Pattern_Length = 8 in
+	BP_Hole_Pattern_Width = 5 in
+	BP_Hole_Dia = 1.8125 in
+	TP_Thickness = 1 in
+	TP_Hole_Dia = 1.0625 in
+
+	Case "W12X65"
+	WB1_G_W = 12 in
+	WB1_G_H = 12.1 in
+	WB1_G_T = 0.39 in
+	WB1_G_T1 = 0.605 in
+	WB1_G_IR = 0.6 in
+	BP_Thickness = 1 in
+	BP_Length = 14 in
+	BP_Width = 14 in
+	BP_Hole_Pattern_Length = 10 in
+	BP_Hole_Pattern_Width = 6 in
+	BP_Hole_Dia = 1.8125 in
+	TP_Thickness = 1 in
+	TP_Hole_Dia = 1.0625 in
+	
+End Select
+
+Select Case W_Beam_2_Type
+
+	Case "W8X24"
+	WB2_G_W = 6.5 in
+	WB2_G_H = 7.93 in
+	WB2_G_T = 0.245 in
+	WB2_G_T1 = 0.4 in
+	WB2_G_IR = 0.4 in
+	
+	Case "W8X31"
+	WB2_G_W = 8 in
+	WB2_G_H = 8 in
+	WB2_G_T = 0.285 in
+	WB2_G_T1 = 0.435 in
+	WB2_G_IR = 0.4 in
+
+	Case "W10X49"
+	WB2_G_W = 10 in
+	WB2_G_H = 10 in
+	WB2_G_T = 0.34 in
+	WB2_G_T1 = 0.56 in
+	WB2_G_IR = 0.5 in
+
+	Case "W12X65"
+	WB2_G_W = 12 in
+	WB2_G_H = 12.1 in
+	WB2_G_T = 0.39 in
+	WB2_G_T1 = 0.605 in
+	WB2_G_IR = 0.6 in
+	
+End Select
+
+Select Case W_Beam_3_Type
+
+	Case "W8X24"
+	WB3_G_W = 6.5 in
+	WB3_G_H = 7.93 in
+	WB3_G_T = 0.245 in
+	WB3_G_T1 = 0.4 in
+	WB3_G_IR = 0.4 in
+	
+	Case "W8X31"
+	WB3_G_W = 8 in
+	WB3_G_H = 8 in
+	WB3_G_T = 0.285 in
+	WB3_G_T1 = 0.435 in
+	WB3_G_IR = 0.4 in
+
+	Case "W10X49"
+	WB3_G_W = 10 in
+	WB3_G_H = 10 in
+	WB3_G_T = 0.34 in
+	WB3_G_T1 = 0.56 in
+	WB3_G_IR = 0.5 in
+
+	Case "W12X65"
+	WB3_G_W = 12 in
+	WB3_G_H = 12.1 in
+	WB3_G_T = 0.39 in
+	WB3_G_T1 = 0.605 in
+	WB3_G_IR = 0.6 in
+	
+End Select
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Mulitvalue Lists 2***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("Boiler_Model", "100D (25-40 ROWS)","200D (40-60 ROWS)","300D (55-65 ROWS)","300D (70-75 ROWS)","400D (75 ROWS)","400D (85-90 ROWS)","500D (95-110 ROWS)","500D (115-125 ROWS)","600D (120 ROWS)","600D (125 ROWS)")
+
+Select Case Boiler_Model
+    Case "100D (25-40 ROWS)"
+	BO_Opening_Width = "16.75"
+	BO_Opening_Length = "67"
+	FGO_Elevation = "26.5"
+	MultiValue.SetList("Economizer_Model", "E3","E4","E5")
+
+    Case "200D (40-60 ROWS)"
+	BO_Opening_Width = "28.75"
+	BO_Opening_Length = "79.5"
+	FGO_Elevation = "29.5"
+	MultiValue.SetList("Economizer_Model", "E5","E6","E7")
+	
+	Case "300D (55-65 ROWS)"
+	BO_Opening_Width = "32.75"
+	BO_Opening_Length = "88.5"
+	FGO_Elevation = "26.5"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+		
+	Case "300D (70-75 ROWS)"
+	BO_Opening_Width = "32.75"
+	BO_Opening_Length = "88.5"
+	FGO_Elevation = "26.5"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+
+	Case "400D (75 ROWS)"
+	BO_Opening_Width = "48.75"
+	BO_Opening_Length = "88.5"
+	FGO_Elevation = "26.5"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "400D (85-90 ROWS)"
+	BO_Opening_Width = "60.75"
+	BO_Opening_Length = "88.5"
+	FGO_Elevation = "26.5"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "500D (95-110 ROWS)"
+	BO_Opening_Width = "68.75"
+	BO_Opening_Length = "91.5"
+	FGO_Elevation = "27.5"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "500D (115-125 ROWS)"
+	BO_Opening_Width = "76.75"
+	BO_Opening_Length = "91.5"
+	FGO_Elevation = "27.5"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "600D (120 ROWS)"
+	BO_Opening_Width = "88.75"
+	BO_Opening_Length = "91.5"
+	FGO_Elevation = "27.5"
+	MultiValue.SetList("Economizer_Model", "E10")
+
+	Case "600D (125 ROWS)"
+	BO_Opening_Width = "88.75"
+	BO_Opening_Length = "91.5"
+	FGO_Elevation = "27.5"
+	MultiValue.SetList("Economizer_Model", "E10")
+	
+End Select
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+
+
+***Basic Dimensions 1***
+
+incRu1 = .125 ' rounding increment ( .125, .25, .5, etc)
+roundedUp1 = Ceil(Round(WB1_G_T,4) / incRu1) * incRu1
+ASP_Thickness = roundedUp1
+
+incRu2 = .25 ' rounding increment ( .125, .25, .5, etc)
+roundedUp2 = Ceil(Round(WB1_G_IR,4) / incRu2) * incRu2
+Chamfer_W_Beam_Support_Plates = roundedUp2
+
+incRu3 = 1 ' rounding increment ( .125, .25, .5, etc)
+roundedUp3 = Ceil(Round((Stucture_Height * 2/3),4) / incRu3) * incRu3
+Top_of_Horizontal_Support_Beam_1 = roundedUp3
+
+incRu4 = 1 ' rounding increment ( .125, .25, .5, etc)
+roundedUp4 = Ceil(Round((Stucture_Height * 1/3),4) / incRu4) * incRu4
+Top_of_Horizontal_Support_Beam_2 = roundedUp4
+
+incRd1 = .0625 ' rounding increment ( .125, .25, .5, etc)
+roundedDown1 = Floor(Round(WB1_G_H - (WB1_G_T1 * 2),4) / incRd1) * incRd1
+W_Beam_Support_Plate_Length = roundedDown1
+
+incRd2 = .5 ' rounding increment ( .125, .25, .5, etc)
+roundedDown2 = Floor(Round((WB1_G_W - WB1_G_T) / 2,4) / incRd2) * incRd2
+W_Beam_Support_Plate_Width = roundedDown2
+
+'Stucture_Height * 2 in / 3 in
+
+'MessageBox.Show(roundedUp1 & vbCrLf & roundedUp2 & vbCrLf & roundedDown1 & vbCrLf & roundedDown2, "Title")
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Basic Dimensions 2***
+
+Select Case Economizer_Model
+	Case "E3"
+	EI_Opening_Width = "22"
+	EI_Opening_Length = "48"
+
+	Case "E4"
+	EI_Opening_Width = "26"
+	EI_Opening_Length = "72"
+            
+	Case "E5"
+	EI_Opening_Width = "38.25"
+	EI_Opening_Length = "84"
+
+	Case "E6"
+	EI_Opening_Width = "42.75"
+	EI_Opening_Length = "108"
+            
+	Case "E7"
+	EI_Opening_Width = "47.25"
+	EI_Opening_Length = "156"
+
+ 	Case "E8"
+	EI_Opening_Width = "56.25"
+	EI_Opening_Length = "180"
+            
+	Case "E9"
+	EI_Opening_Width = "74.25"
+	EI_Opening_Length = "192"
+
+	Case "E10"
+	EI_Opening_Width = "101.25"
+	EI_Opening_Length = "204"
+End Select
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Platform Location***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("Platform_Location", "No Platform", "Right","Front","Left","Back")
+
+Select Case Platform_Location
+
+	Case "No Platform"
+	Feature.IsActive("Horizontal Long Beam 1 Right Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 1 Left Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Right Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Left Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Short Beam 1") = True
+	Feature.IsActive("Cope 2 Horizontal Short Beam 1") = True
+	Feature.IsActive("HLB1 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB1 Platform Extension (Left Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Left Side)") = False
+	Feature.IsActive("Platform Extension Back (Right Side)") = False
+	Feature.IsActive("Platform Extension Front (Right Side)") = False
+	Feature.IsActive("Holes in Horizontal Short Beam 1 (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Front Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Back Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Back Side)") = False
+
+	Case "Right"
+	Feature.IsActive("Horizontal Long Beam 1 Right Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 1 Left Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Right Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Left Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Short Beam 1") = True
+	Feature.IsActive("Cope 2 Horizontal Short Beam 1") = True
+	Feature.IsActive("HLB1 Platform Extension (Right Side)") = True
+	Feature.IsActive("HLB2 Platform Extension (Right Side)") = True
+	Feature.IsActive("HLB1 Platform Extension (Left Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Left Side)") = False
+	Feature.IsActive("Platform Extension Back (Right Side)") = False
+	Feature.IsActive("Platform Extension Front (Right Side)") = False
+	Feature.IsActive("Holes in Horizontal Short Beam 1 (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Front Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Right Back Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Front Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Back Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Back Side)") = False
+
+	Case "Front"
+	Feature.IsActive("Horizontal Long Beam 1 Right Side Top Mount Plate Holes (Front Side)") = False
+	Feature.IsActive("Horizontal Long Beam 1 Left Side Top Mount Plate Holes (Front Side)") = False
+	Feature.IsActive("Horizontal Long Beam 2 Right Side Top Mount Plate Holes (Back Side)") = False
+	Feature.IsActive("Horizontal Long Beam 2 Left Side Top Mount Plate Holes (Back Side)") = False
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 1 Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 2 Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 1 Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 2 Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 1 Horizontal Short Beam 1") = False
+	Feature.IsActive("Cope 2 Horizontal Short Beam 1") = False
+	Feature.IsActive("HLB1 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB1 Platform Extension (Left Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Left Side)") = False
+	Feature.IsActive("Platform Extension Back (Right Side)") = False
+	Feature.IsActive("Platform Extension Front (Right Side)") = True
+	Feature.IsActive("Holes in Horizontal Short Beam 1 (Front Side)") = True
+	Feature.IsActive("Platform Additional Long Beam (Front Side)") = True
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Front Side)") = True
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Front Side)") = True
+	Feature.IsActive("Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Front Right Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Back Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Back Side)") = False
+
+	Case "Left"
+	Feature.IsActive("Horizontal Long Beam 1 Right Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 1 Left Side Top Mount Plate Holes (Front Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Right Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Horizontal Long Beam 2 Left Side Top Mount Plate Holes (Back Side)") = True
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 1") = False
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 2 Horizontal Long Beam 2") = False
+	Feature.IsActive("Cope 1 Horizontal Short Beam 1") = True
+	Feature.IsActive("Cope 2 Horizontal Short Beam 1") = True
+	Feature.IsActive("HLB1 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB1 Platform Extension (Left Side)") = True
+	Feature.IsActive("HLB2 Platform Extension (Left Side)") = True
+	Feature.IsActive("Platform Extension Back (Right Side)") = False
+	Feature.IsActive("Platform Extension Front (Right Side)") = False
+	Feature.IsActive("Holes in Horizontal Short Beam 1 (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Front Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Back Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Front Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Left Back Side)") = True
+
+	Case "Back"
+	Feature.IsActive("Horizontal Long Beam 1 Right Side Top Mount Plate Holes (Front Side)") = False
+	Feature.IsActive("Horizontal Long Beam 1 Left Side Top Mount Plate Holes (Front Side)") = False
+	Feature.IsActive("Horizontal Long Beam 2 Right Side Top Mount Plate Holes (Back Side)") = False
+	Feature.IsActive("Horizontal Long Beam 2 Left Side Top Mount Plate Holes (Back Side)") = False
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 1 Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 2 Horizontal Long Beam 1") = True
+	Feature.IsActive("Cope 1 Prep Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 1 Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 2 Horizontal Long Beam 2") = True
+	Feature.IsActive("Cope 1 Horizontal Short Beam 1") = False
+	Feature.IsActive("Cope 2 Horizontal Short Beam 1") = False
+	Feature.IsActive("HLB1 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Right Side)") = False
+	Feature.IsActive("HLB1 Platform Extension (Left Side)") = False
+	Feature.IsActive("HLB2 Platform Extension (Left Side)") = False
+	Feature.IsActive("Platform Extension Back (Right Side)") = True
+	Feature.IsActive("Platform Extension Front (Right Side)") = False
+	Feature.IsActive("Holes in Horizontal Short Beam 1 (Front Side)") = True
+	Feature.IsActive("Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Front Side)") = False
+	Feature.IsActive("Platform Additional Long Beam (Back Side)") = True
+	Feature.IsActive("Cope 1 Platform Additional Long Beam (Back Side)") = True
+	Feature.IsActive("Cope 2 Platform Additional Long Beam (Back Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Right Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Right Back Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Front Right Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Back Right Side)") = True
+	Feature.IsActive("Platform Mounting Holes (Left Front Side)") = False
+	Feature.IsActive("Platform Mounting Holes (Left Back Side)") = False
+
+End Select
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Feedwater Location***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("Feedwater_Location", "Front","Back")
+
+Select Case Feedwater_Location
+
+	Case "Front"
+	Feature.IsActive("HLB1 Econ Hole (Left Side)") = False
+	Feature.IsActive("HLB1 Econ Hole (Right Side)") = True
+	Feature.IsActive("HLB1 Econ Slot (Left Side)") = True
+	Feature.IsActive("HLB1 Econ Slot (Right Side)") = False
+	Feature.IsActive("HLB2 Econ Hole (Left Side)") = False
+	Feature.IsActive("HLB2 Econ Hole (Right Side)") = True
+	Feature.IsActive("HLB2 Econ Slot (Left Side)") = True
+	Feature.IsActive("HLB2 Econ Slot (Right Side)") = False
+
+	Case "Back"
+	Feature.IsActive("HLB1 Econ Hole (Left Side)") = True
+	Feature.IsActive("HLB1 Econ Hole (Right Side)") = False
+	Feature.IsActive("HLB1 Econ Slot (Left Side)") = False
+	Feature.IsActive("HLB1 Econ Slot (Right Side)") = True
+	Feature.IsActive("HLB2 Econ Hole (Left Side)") = True
+	Feature.IsActive("HLB2 Econ Hole (Right Side)") = False
+	Feature.IsActive("HLB2 Econ Slot (Left Side)") = False
+	Feature.IsActive("HLB2 Econ Slot (Right Side)") = True
+	
+End Select
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Build Skeleton***
+
+iLogicVb.RunRule("Basic Dimensions 1")
+
+iLogicVb.RunRule("Basic Dimensions 2")
+
+iLogicVb.RunRule("Platform Location")
+
+iLogicVb.RunRule("Feedwater Location")
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+

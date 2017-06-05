@@ -1,4 +1,8 @@
+**********************************************************************************************
+**********************************************************************************************
 -STRUCTURE-ECON-S1 DESIGN TOOL SKELETON CODE
+
+**********************************************************************************************
 
 ***Multivalue Lists 1***
 
@@ -141,7 +145,7 @@ End Select
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Mulitvalue Lists 2***
 
@@ -215,7 +219,7 @@ End Select
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Basic Dimensions 1***
 
@@ -250,7 +254,7 @@ W_Beam_Support_Plate_Width = roundedDown2
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Basic Dimensions 2***
 
@@ -291,7 +295,7 @@ End Select
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Platform Location***
 
@@ -471,7 +475,7 @@ End Select
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Feedwater Location***
 
@@ -506,7 +510,7 @@ End Select
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
 
 ***Build Skeleton***
 
@@ -521,9 +525,12 @@ iLogicVb.RunRule("Feedwater Location")
 RuleParametersOutput()
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
+**********************************************************************************************
 
 -STRUCTURE-ECON-S1-T FRAME CODE
+
+**********************************************************************************************
 
 ***Component Visibility***
 
@@ -697,7 +704,7 @@ End If
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Set Invisible Components to Reference***
 
@@ -748,7 +755,7 @@ oBOMView = oBOM.BOMViews.Item("Structured")
 
 oBOMView.Renumber
 
-
+**********************************************************************************************
 
 ***Build Top Frame***
 
@@ -758,9 +765,12 @@ iLogicVb.RunRule("Set Invisible Components to Reference")
 
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
+**********************************************************************************************
 
 -STRUCTURE-ECON-S1-V FRAME (R) CODE
+
+**********************************************************************************************
 
 ***Component Visibility***
 
@@ -834,7 +844,7 @@ End If
 RuleParametersOutput()
 iLogicVb.UpdateWhenDone = True
 
-
+**********************************************************************************************
 
 ***Set Invisible Components to Reference***
 
@@ -885,7 +895,7 @@ oBOMView = oBOM.BOMViews.Item("Structured")
 
 oBOMView.Renumber
 
-
+**********************************************************************************************
 
 ***Build Vertical Frame (R)***
 
@@ -895,8 +905,633 @@ iLogicVb.RunRule("Set Invisible Components to Reference")
 
 InventorVb.DocumentUpdate()
 
-
+**********************************************************************************************
+**********************************************************************************************
 
 -STRUCTURE-ECON-S1-V FRAME (L) CODE
 
-***
+**********************************************************************************************
+
+***Component Visibility***
+
+If Platform_Location = "No Platform"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:3") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:6") = False
+
+ElseIf Platform_Location = "Right"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:3") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:6") = False
+
+ElseIf Platform_Location = "Front"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:3") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:6") = False
+
+ElseIf Platform_Location = "Left"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:3") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:3") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:6") = False
+
+ElseIf Platform_Location = "Back"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-WBSP:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:2") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-ASP:6") = True
+
+End If
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+**********************************************************************************************
+
+***Set Invisible Components to Reference***
+
+' set a reference to the assembly component definintion.
+' This assumes an assembly document is open.
+Dim oAsmCompDef As AssemblyComponentDefinition
+oAsmCompDef = ThisDoc.Document.ComponentDefinition
+'Iterate through all of the occurrences
+Dim oOccurrence As ComponentOccurrence
+For Each oOccurrence In oAsmCompDef.Occurrences
+'check for and skip virtual components
+If Not TypeOf oOccurrence.Definition Is VirtualComponentDefinition Then
+''set BOM as default if the component is visible
+If Component.Visible(oOccurrence.Name) = True Then
+'otestvisible = CStr(oOccurrence.Name)
+'MessageBox.Show(otestvisible, "Title")
+
+'enable or disable component
+Component.InventorComponent(oOccurrence.Name).Enabled = True
+
+
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kDefaultBOMStructure
+'set BOM as reference if the component is not visible
+ElseIf Component.Visible(oOccurrence.Name) = False Then
+Component.InventorComponent(oOccurrence.Name).Enabled = False
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kReferenceBOMStructure
+End If
+Else
+End If
+Next
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+Dim oDoc As AssemblyDocument
+oDoc = ThisDoc.Document
+
+Dim oBOM As BOM
+oBOM = oDoc.ComponentDefinition.BOM
+
+oBOM.StructuredViewFirstLevelOnly = False
+oBOM.StructuredViewEnabled = True
+
+
+Dim oBOMView As BOMView
+oBOMView = oBOM.BOMViews.Item("Structured")
+
+oBOMView.Renumber
+
+**********************************************************************************************
+
+***Build Vertical Frame (L)***
+
+iLogicVb.RunRule("Component Visibility")
+
+iLogicVb.RunRule("Set Invisible Components to Reference")
+
+InventorVb.DocumentUpdate()
+
+**********************************************************************************************
+**********************************************************************************************
+
+STRUCTURE-ECON-S1 DESIGN TOOL CODE
+
+**********************************************************************************************
+
+***Multivalue Lists***
+
+MultiValue.SetValueOptions(True, DefaultIndex := 0)
+
+MultiValue.SetList("Feedwater_Location", "Front", "Back")
+
+MultiValue.SetList("Boiler_Model", "100D (25-40 ROWS)","200D (40-60 ROWS)","300D (55-65 ROWS)","300D (70-75 ROWS)","400D (75 ROWS)","400D (85-90 ROWS)","500D (95-110 ROWS)","500D (115-125 ROWS)","600D (120 ROWS)","600D (125 ROWS)")
+
+Select Case Boiler_Model
+    Case "100D (25-40 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E3","E4","E5")
+
+    Case "200D (40-60 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E5","E6","E7")
+	
+	Case "300D (55-65 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+		
+	Case "300D (70-75 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E7","E8")
+
+	Case "400D (75 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "400D (85-90 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E7","E8","E9")
+
+	Case "500D (95-110 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "500D (115-125 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E8","E9","E10")
+
+	Case "600D (120 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E10")
+
+	Case "600D (125 ROWS)"
+	MultiValue.SetList("Economizer_Model", "E10")
+	
+End Select
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+**********************************************************************************************
+
+***Push Matching Parameters to Child Components***
+
+'[ Push Matching Values
+Dim oAsmDoc As AssemblyDocument = ThisApplication.ActiveDocument
+Dim oAsmCompDef As AssemblyComponentDefinition = oAsmDoc.ComponentDefinition
+Dim oOcc As ComponentOccurrence
+Dim Occurences As ComponentOccurrences = oAsmCompDef.Occurrences
+Dim UserParams As UserParameters = ThisApplication.ActiveDocument.ComponentDefinition.Parameters.UserParameters
+
+
+For Each oOcc in Occurences
+	For Each item In UserParams
+		Try
+			Parameter(oOcc.Name, item.Name) =  Parameter(item.Name)		
+		Catch
+			Return
+		End Try
+	Next
+
+Next
+']
+
+**********************************************************************************************
+
+***Push Project Number to Subassemblies***
+
+iProperties.Value("Top Frame", "Project", "Project") = iProperties.Value("Project", "Project")
+iProperties.Value("Vertical Frame (Right)", "Project", "Project") = iProperties.Value("Project", "Project")
+iProperties.Value("Vertical Frame (Left)", "Project", "Project") = iProperties.Value("Project", "Project")
+
+**********************************************************************************************
+
+***Component Visibility***
+
+If Platform_Location = "No Platform"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):8") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):8") = False
+
+ElseIf Platform_Location = "Right"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):8") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):8") = False
+
+ElseIf Platform_Location = "Front"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):8") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):8") = False
+
+ElseIf Platform_Location = "Left"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):8") = False
+
+ElseIf Platform_Location = "Back"
+	Component.Visible("Skeleton") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):1") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):4") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCIS(RS):8") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):5") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(RS):8") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):1") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):2") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):3") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):4") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):5") = True
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):6") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):7") = False
+	Component.Visible(iProperties.Value("Project", "Project") & "-STRUCTURE-ECON-S1-CCPS(FS):8") = True
+
+End If
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+**********************************************************************************************
+
+***Set Invisible Components to Reference***
+
+' set a reference to the assembly component definintion.
+' This assumes an assembly document is open.
+Dim oAsmCompDef As AssemblyComponentDefinition
+oAsmCompDef = ThisDoc.Document.ComponentDefinition
+'Iterate through all of the occurrences
+Dim oOccurrence As ComponentOccurrence
+For Each oOccurrence In oAsmCompDef.Occurrences
+'check for and skip virtual components
+If Not TypeOf oOccurrence.Definition Is VirtualComponentDefinition Then
+''set BOM as default if the component is visible
+If Component.Visible(oOccurrence.Name) = True Then
+'otestvisible = CStr(oOccurrence.Name)
+'MessageBox.Show(otestvisible, "Title")
+
+'enable or disable component
+Component.InventorComponent(oOccurrence.Name).Enabled = True
+
+
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kDefaultBOMStructure
+'set BOM as reference if the component is not visible
+ElseIf Component.Visible(oOccurrence.Name) = False Then
+Component.InventorComponent(oOccurrence.Name).Enabled = False
+Component.InventorComponent(oOccurrence.Name).BOMStructure = BOMStructureEnum.kReferenceBOMStructure
+End If
+Else
+End If
+Next
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+Dim oDoc As AssemblyDocument
+oDoc = ThisDoc.Document
+
+Dim oBOM As BOM
+oBOM = oDoc.ComponentDefinition.BOM
+
+oBOM.StructuredViewFirstLevelOnly = False
+oBOM.StructuredViewEnabled = True
+
+
+Dim oBOMView As BOMView
+oBOMView = oBOM.BOMViews.Item("Structured")
+
+oBOMView.Renumber
+
+**********************************************************************************************
+
+***Revert Subassemblies to Default DVR***
+
+Dim doc As AssemblyDocument = ThisDoc.Document
+Dim oAsmCompDef As ComponentDefinition
+Dim oCompOcc As Inventor.ComponentOccurrence
+oAsmCompDef = doc.ComponentDefinition
+
+For Each oCompOcc in oAsmCompDef.Occurrences
+
+    If oCompOcc.Visible = True Then
+    
+        If oCompOcc.DefinitionDocumentType = kAssemblyDocumentObject Then
+        
+            oCompOcc.SetDesignViewRepresentation("Default", True)
+            
+        Else
+
+        End If
+    
+    Else
+    
+    End If
+
+On Error Resume Next
+
+Next
+
+**********************************************************************************************
+
+***Build***
+
+iLogicVb.RunRule("Push Matching Parameters to Child Components")
+
+iLogicVb.RunRule("Push Project Number to Subassemblies")
+
+iLogicVb.RunRule("Skeleton", "Build Skeleton")
+
+iLogicVb.RunRule("Top Frame", "Build Top Frame")
+
+iLogicVb.RunRule("Vertical Frame (Right)", "Build Vertical Frame (R)")
+
+iLogicVb.RunRule("Vertical Frame (Left)", "Build Vertical Frame (L)")
+
+iLogicVb.RunRule("Component Visibility")
+
+iLogicVb.RunRule("Set Invisible Components to Reference")
+
+iLogicVb.RunRule("Revert Subassemblies To Default DVR")
+
+InventorVb.DocumentUpdate()
+ThisDoc.Save
+
+**********************************************************************************************
+
+***Replace Child Components***
+
+'[ Create New Folder Path
+JobNumber = iProperties.Value("Project", "Project")
+
+ProjectFilePath = ThisApplication.FileLocations.FileLocationsFile
+ProjectFilePathArray = Split(ProjectFilePath,"\")
+
+If IsNumeric(Left(JobNumber,1)) = True
+
+    PrefixNumber = Left(JobNumber, Len(JobNumber)-2)
+    NewFolderPath =  ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & "\" & "Current Job Folder\" _
+    & PrefixNumber & "00-" & PrefixNumber & "99\" & JobNumber & "\STRUCTURE-ECON-S1\"
+
+Else
+
+    NewFolderPath = ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & _
+    "\Current Job Folder\EBS STDS\STRUCTURE-ECON-S1\" & JobNumber & "\"
+
+End If
+']
+
+'[ Save Instance of Template
+If System.IO.Directory.Exists(NewFolderPath) Then
+Else
+System.IO.Directory.CreateDirectory(NewFolderPath)
+End If
+
+
+
+NewFilePath = NewFolderPath & JobNumber & " STRUCTURE-ECON-S1.iam"
+
+If System.IO.File.Exists(NewFilePath) = False Then
+    ThisDoc.Document.SaveAs(NewFilePath, False)
+Else
+    MessageBox.Show(NewFilePath & " already exists", "STRUCTURE-ECON-S1 - Replace Child Components")
+    Return
+End If
+']
+
+'[ Iterate through all of the documents referenced by this assembly and replace the job specific ones
+Dim oAsmDoc As AssemblyDocument = ThisDoc.Document
+
+Dim oDoc As Document
+
+
+For Each oDoc In oAsmDoc.AllReferencedDocuments
+ 
+    FullPath = oDoc.FullFileName
+    PathSplitArray = Split(FullPath,"\")
+    FileName = PathSplitArray(PathSplitArray.Length-1)
+
+    If Left(FileName,1) = "-"
+    
+'Adds folders past Specific Design Tools Folder
+
+                ExtraFolders = ""
+                
+                For i = 5 To PathSplitArray.Length-2
+                
+                    ExtraFolders = ExtraFolders & "\" & PathSplitArray(i) 
+                
+                Next
+                
+                
+                
+    
+    'Saves new path of files with leading "-"
+    
+                SavePath = NewFolderPath & "\"& ExtraFolders & "\" & JobNumber & FileName
+
+    oFile = ThisApplication.Documents.Open(FullPath, False) 
+    oFile.SaveAs(SavePath,False)
+    oFile.Close
+    
+    End If
+
+Next
+']
+
+**********************************************************************************************
+
+***Create Drawing***
+
+'[ Create Drawing
+
+ProjectFilePath = ThisApplication.FileLocations.FileLocationsFile
+ProjectFilePathArray = Split(ProjectFilePath,"\")
+
+DrawingTemplatePath =  ProjectFilePathArray(0) & "\" & ProjectFilePathArray(1) & "\Current Job Folder\Design Tools\STRUCTURE-ECON-S1\-STRUCTURE-ECON-S1.dwg"
+ModelNewPath = ThisDoc.PathAndFileName(True)
+DrawingNewPath = ThisDoc.ChangeExtension(".dwg")
+
+If System.IO.File.Exists(DrawingNewPath) = True
+    i = MessageBox.Show(DrawingNewPath & " already exists", "iLogic", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+Else If System.IO.File.Exists(DrawingTemplatePath) = False
+    i = MessageBox.Show(DrawingTemplatePath & " not found.  Get from Vault.", "iLogic", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1)
+    Return
+Else
+
+        Dim oDwg as DrawingDocument
+        oDwg = ThisApplication.Documents.Open(DrawingTemplatePath, False)
+        
+        'Swap out Reference
+        Dim oFD As FileDescriptor
+        oFD = oDwg.ReferencedFileDescriptors(1).DocumentDescriptor.ReferencedFileDescriptor
+        oFD.ReplaceReference(ModelNewPath)
+    
+    
+        For i = 1 To oDwg.ReferencedFileDescriptors.Count
+
+            oFD = oDwg.ReferencedFileDescriptors(i).DocumentDescriptor.ReferencedFileDescriptor
+            FileNameArray = Split(oFD.FullFileName,"\")
+            
+            NewFilePath = ThisDoc.Path & "\" & iProperties.Value("Project", "Project") & FileNameArray(FileNameArray.Length-1)
+            
+                If Left(FileNameArray(FileNameArray.Length-1),1) = "-"
+                    Try
+                    oFD.ReplaceReference(NewFilePath)
+                    Catch
+                    MsgBox("Trouble Replacing " & NewFilePath & "... Please check lagging drawing for errors")
+                    End Try
+                End If
+                
+        Next
+    
+    
+            
+        oDwg.Update()
+        oDwg.SaveAs(DrawingNewPath,False)
+        oDwg.Close
+
+End If
+']
+
+**********************************************************************************************
+
+***On New Document***
+
+ThisApplication.CommandManager.ControlDefinitions.Item("AppIsometricViewCmd").Execute
+
+iProperties.Value("Project", "Project") = InputBox("Input Job Number", "Job Number Entry","####")
+
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+iLogicVb.RunRule("Replace Child Components")
+
+iLogicVb.RunRule("Create Drawing")
+
+iLogicForm.Show("Configure")
+
+InventorVb.DocumentUpdate()
+ThisDoc.Save

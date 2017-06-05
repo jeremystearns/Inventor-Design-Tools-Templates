@@ -1,0 +1,43 @@
+DUCT-FGO-S1 DESIGN TOOL SKELETON CODE
+
+***Basic Dimensions***
+
+Stiffener_Flush_Difference = (Tan(Angle_of_Transition*PI/180)*Thickness_of_Bar_in_Sketch_Blocks)
+
+inc = .125 ' rounding increment ( .125, .25, .5, etc)
+roundedDown = Floor(Round(Internal_Stiffener_Ref,4) / inc) * inc
+Internal_Stiffener_Distance = roundedDown
+
+BO_Small_Angle_Hole_Qty = Round(BO_Opening_Width/BO_Small_Angle_Hole_Spacing,0)
+
+BO_Small_Angle_Hole_Dim_From_End = (BO_Opening_Width-((BO_Small_Angle_Hole_Qty-1)*BO_Small_Angle_Hole_Spacing))/2
+
+BO_Large_Angle_Hole_Qty = Round(BO_Opening_Length/BO_Large_Angle_Hole_Spacing,0)
+
+BO_Large_Angle_Hole_Pattern_Dim_From_End = (BO_Opening_Length-((BO_Large_Angle_Hole_Qty-1)*BO_Large_Angle_Hole_Spacing)+Flange_Length*2)/2
+
+RuleParametersOutput()
+InventorVb.DocumentUpdate()
+
+
+
+***Feature Suppression***
+
+If BO_Opening_Width < 18 Then
+Feature.IsActive("Trim Vert Stiffener 1") = True
+Else
+Feature.IsActive("Trim Vert Stiffener 1") = False
+End If
+
+RuleParametersOutput()
+iLogicVb.UpdateWhenDone = True
+
+
+
+***Build Skeleton***
+
+iLogicVb.RunRule("Basic Dimensions")
+
+iLogicVb.RunRule("Feature Suppression")
+
+InventorVb.DocumentUpdate()
